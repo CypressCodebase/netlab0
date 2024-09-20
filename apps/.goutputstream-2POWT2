@@ -20,15 +20,9 @@ void get_URL( const string& host, const string& path )
     const string url = host + path;
     //Resolve ip from address 
     Address server_address(url, "http")
-    //make a socket connecting to that server
-    socket.connect(server_address)
     //make a http request 
-    const string get_request = "GET "+path+" HTTP/1.1\r\n"
-            "Host: "+host +"\r\n"
-            "Connection: close\r\n"
-            "r\n\"
-    //send 
   
+  string get_http = "GET / HTTP/1.1\r\nHost: " + url + "\r\nConnection: close\r\n\r\n";
   //send that through a socket
   //receive information from said socket
   //put that into a buffer
