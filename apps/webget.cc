@@ -11,6 +11,22 @@ void get_URL( const string& host, const string& path )
 {
   cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
   cerr << "Warning: get_URL() has not been implemented yet.\n";
+  
+  //Write here I guess
+  //TCP and Address classes
+  //piece together the hostname and filepath
+    const string url = host + path;
+    //contact dns from address
+    Address server_address(url, "http")
+    //make a http request 
+  
+  string get_http = "GET / HTTP/1.1\r\nHost: " + url + "\r\nConnection: close\r\n\r\n";
+  //send that through a socket
+  //receive information from said socket
+  //put that into a buffer
+  //print that buffer
+  
+
 }
 
 int main( int argc, char* argv[] )
