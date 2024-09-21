@@ -31,7 +31,7 @@ void get_URL( const string& host, const string& path )
     response += buffer;
     }
   
-    std::cout << response << std::endl;
+    std::cout << response;
   //print that buffer
   
   socket.shutdown(2);
