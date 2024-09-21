@@ -7,9 +7,7 @@
 using namespace std;
 
 void get_URL( const string& host, const string& path )
-{
-  cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
-  
+{  
   TCPSocket socket;
   
   //Write here I guess
@@ -33,7 +31,7 @@ void get_URL( const string& host, const string& path )
     response += buffer;
     }
   
-    std::cout << "Response: " << response << std::endl;
+    std::cout << response << std::endl;
   //print that buffer
   
   socket.shutdown(2);
