@@ -19,19 +19,27 @@ void get_URL( const string& host, const string& path )
   //piece together the hostname and filepath
     const string url = host + path;
     //Resolve ip from address 
-    Address server_address(url, "http")
+    Address server_address(url, "http");
     //make a socket connecting to that server
-    socket.connect(server_address)
+    socket.connect(server_address);
     //make a http request 
     const string get_request = "GET "+path+" HTTP/1.1\r\n"
             "Host: "+host +"\r\n"
             "Connection: close\r\n"
-            "r\n\"
-    //send 
-  
+            "r\n\";
+    //send http request
+    socket.send(request);
   //send that through a socket
   //receive information from said socket
+  string response;
+  string buffer;
   //put that into a buffer
+  while ((buffer = socket.receive().size() > 0)
+    {
+      response += buffer;
+  }
+  
+    std::cout << "Response: " << response << std::endl;
   //print that buffer
   
 
