@@ -1,8 +1,7 @@
 #include "socket.hh"
-#include "address.hh"
 #include <cstdlib>
 #include <iostream>
-#include <span>ok
+#include <span>
 #include <string>
 
 using namespace std;
@@ -10,39 +9,34 @@ using namespace std;
 void get_URL( const string& host, const string& path )
 {
   cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
-  cerr << "Warning: get_URL() has not been implemented yet.\n";
   
-  TCPsocket socket;
+  TCPSocket socket;
   
   //Write here I guess
   //TCP and Address classes
-  //piece together the hostname and filepath
-    const string url = host + path;
     //Resolve ip from address 
-    Address server_address(url, "http");
+    Address server_address(host, "http");
     //make a socket connecting to that server
     socket.connect(server_address);
     //make a http request 
     const string get_request = "GET "+path+" HTTP/1.1\r\n"
             "Host: "+host +"\r\n"
-            "Connection: close\r\n"
-            "r\n\";
+            "Connection: close\r\n\r\n";
     //send http request
-    socket.send(request);
-  //send that through a socket
-  //receive information from said socket
-  string response;
-  string buffer;
-  //put that into a buffer
-  while ((buffer = socket.receive().size() > 0)
-    {
-      response += buffer;
-  }
+    socket.write(get_request);
+    //receive information from said socket
+    string response;
+    string buffer;
+    //put that into a buffer
+    while (!socket.eof()){
+    socket.read( buffer );
+    response += buffer;
+    }
   
     std::cout << "Response: " << response << std::endl;
   //print that buffer
   
-
+  socket.shutdown(2);
 }
 
 int main( int argc, char* argv[] )
