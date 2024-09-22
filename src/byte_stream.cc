@@ -20,6 +20,7 @@ void Writer::push( string data )
 void Writer::close()
 {
   // Your code here.
+  closed_ = true;
 }
 
 uint64_t Writer::available_capacity() const
