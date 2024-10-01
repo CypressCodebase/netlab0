@@ -26,25 +26,25 @@ void Writer::close()
 uint64_t Writer::available_capacity() const
 {
   // Your code here.
-  return {};
+  return capacity_ - _buffer.size();
 }
 
 uint64_t Writer::bytes_pushed() const
 {
   // Your code here.
-  return {};
+  return _bytes_pushed;
 }
 
 bool Reader::is_finished() const
 {
   // Your code here.
-  return {};
+  return writer().is_closed() && !bytes_buffered();
 }
 
 uint64_t Reader::bytes_popped() const
 {
   // Your code here.
-  return {};
+  return _bytes_popped;
 }
 
 string_view Reader::peek() const
@@ -62,5 +62,5 @@ void Reader::pop( uint64_t len )
 uint64_t Reader::bytes_buffered() const
 {
   // Your code here.
-  return {};
+  return _bytes_buffered;
 }
