@@ -6,13 +6,21 @@ ByteStream::ByteStream( uint64_t capacity ) : capacity_( capacity ) {}
 
 bool Writer::is_closed() const
 {
-  // Your code here.
-  return {};
+  return closed_;
 }
 
 void Writer::push( string data )
 {
   // Your code here.
+  //choose between the lowest number of bytes
+  auto write_count = min( 
+  available_capacity(), 
+  data.size()
+  );
+  //add total bytes processed.
+  bytes_pushed_ += write_count;
+  //add 
+  buffer_ += data.substr( 0, write_count  );
   (void)data;
   return;
 }
@@ -20,18 +28,22 @@ void Writer::push( string data )
 void Writer::close()
 {
   // Your code here.
+  //close Bytestream.
   closed_ = true;
+  return _closed;
 }
 
 uint64_t Writer::available_capacity() const
 {
   // Your code here.
-  return capacity_ - _buffer.size();
+  //total capacity in the buffer - current amount of bytes in buffer.
+  return capacity_ - buffer_.size();
 }
 
 uint64_t Writer::bytes_pushed() const
 {
   // Your code here.
+  //total processed sent into stream
   return _bytes_pushed;
 }
 

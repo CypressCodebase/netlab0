@@ -6,11 +6,14 @@
 
 class Reader;
 class Writer;
+//header file, defines variables and other interfaces for the main c++ file to use.
 
 class ByteStream
 {
 public:
   explicit ByteStream( uint64_t capacity );
+  
+  
 
   // Helper functions (provided) to access the ByteStream's Reader and Writer interfaces
   Reader& reader();
@@ -24,8 +27,14 @@ public:
 protected:
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
   uint64_t capacity_;
+  uint64_t bytes_pushed_;
+  uint64_t bytes_popped_;
+  uint64_t ;
   bool error_ {};
   bool closed_ {};
+  std::string buffer_; 
+
+
 };
 
 class Writer : public ByteStream
