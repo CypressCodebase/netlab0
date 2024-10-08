@@ -2,14 +2,16 @@
 
 using namespace std;
 
+// Constructor for ByteStream class
 ByteStream::ByteStream(uint64_t capacity) : 
     capacity_(capacity),
     bytes_pushed_(0),    // Initialize bytes_pushed_ to 0
-    bytes_popped_(0),    // Initialize bytes_popped_ to 0
-    buffer_() {          // Correctly initialize buffer_ as an empty string
+    bytes_popped_(0),    // Initialize bytes_popped_ to 0 
+    closed_(false),// Initialize buffer_ as an empty string
+    buffer_()// Initialize closed_ as false
+{
     // Constructor body (if needed)
 }
-
 bool Writer::is_closed() const
 {
   return closed_;
@@ -23,11 +25,15 @@ void Writer::push( string data )
   available_capacity(), 
   data.size()
   );
+  
+  if ( !write_count ) {
+    return;
+  }
   //add total bytes processed.
+  
   bytes_pushed_ += write_count;
-  //add 
+  //add pushed data to buffer
   buffer_ += data.substr( 0, write_count  );
-  (void)data;
   return;
 }
 
@@ -55,8 +61,8 @@ uint64_t Writer::bytes_pushed() const
 
 bool Reader::is_finished() const
 {
-  // Your code here.
-  return (writer().is_closed() && buffer_.empty());
+
+  return writer().is_closed() && buffer_.empty();
 }
 
 uint64_t Reader::bytes_popped() const
@@ -67,9 +73,9 @@ uint64_t Reader::bytes_popped() const
 
 string_view Reader::peek() const
 {
-  // Your code here.
-  return std::string_view(buffer_);
-}
+    return std::string_view(buffer_);
+    }
+
 
 void Reader::pop( uint64_t len )
 {
@@ -77,11 +83,11 @@ void Reader::pop( uint64_t len )
   //ensure pop_count is a within constraint.
   auto pop_count = min( len, buffer_.size());
   //while bytes are still being processed
+if ( !pop_count ) {
+    return;
+  }
   buffer_.erase(0, pop_count);
   bytes_popped_ += pop_count;
-
-  
-  (void)len;
 }
 
 uint64_t Reader::bytes_buffered() const
