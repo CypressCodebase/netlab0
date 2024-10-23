@@ -21,10 +21,7 @@ void Writer::push( string data )
 {
   // Your code here.
   //choose between the lowest number of bytes
-  auto write_count = min( 
-  available_capacity(), 
-  data.size()
-  );
+  auto write_count = min( available_capacity(), data.size());
   
   if ( !write_count ) {
     return;

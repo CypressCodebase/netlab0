@@ -11,16 +11,19 @@
 class Wrap32
 {
 public:
+  //constructor storing the raw value in protected variable
   explicit Wrap32( uint32_t raw_value ) : raw_value_( raw_value ) {}
 
   /* Construct a Wrap32 given an absolute sequence number n and the zero point. */
   static Wrap32 wrap( uint64_t n, Wrap32 zero_point );
 
   /*
-   * The unwrap method returns an absolute sequence number that wraps to this Wrap32, given the zero point
-   * and a "checkpoint": another absolute sequence number near the desired answer.
+   *  unwrap method returns an absolute seqno that wraps to this Wrap32, 
+   * given zero point
+   * and a "checkpoint": another absolute 
+   * sequence number near the desired answer.
    *
-   * There are many possible absolute sequence numbers that all wrap to the same Wrap32.
+   * There are many possible numbers that all wrap to the same Wrap32.
    * The unwrap method should return the one that is closest to the checkpoint.
    */
   uint64_t unwrap( Wrap32 zero_point, uint64_t checkpoint ) const;
