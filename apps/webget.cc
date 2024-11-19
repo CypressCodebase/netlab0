@@ -1,4 +1,5 @@
 #include "socket.hh"
+#include "tcp_minnow_socket.hh"
 #include <cstdlib>
 #include <iostream>
 #include <span>
@@ -8,7 +9,7 @@ using namespace std;
 
 void get_URL( const string& host, const string& path )
 {  
-  TCPSocket socket;
+  CS144TCPSocket socket;
   
   //Write here I guess
   //TCP and Address classes
