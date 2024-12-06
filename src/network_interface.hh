@@ -58,11 +58,8 @@ private:
   
   //structure using ip_as_number to identify data.
   using ip_as_number = decltype( ip_address_.ipv4_numeric() );
-  std::unordered_map<ip_as_number, std::vector<InternetDatagram>> datagram_queue_ {};
-  std::unordered_map<ip_as_number, std::pair<EthernetAddress, Timer>> ARP_cache_{};  
-  std::unordered_map<ip_as_number, Timer> arp_request_timers_ {};
- 
-};
+  
+  std::unordered_map<ip_as_number, std::vector<InternetDatagram>> datagram_queue_   {};
 
 //timer class to handle ARP expirations
 class Timer {
@@ -86,6 +83,8 @@ public:
 
   static constexpr size_t ARP_ENTRY_TTL_ { 30'000 };
 
+  std::unordered_map<ip_as_number, std::pair<EthernetAddress, Timer>> ARP_cache_{};  
 
-
-
+  std::unordered_map<ip_as_number, Timer> arp_request_timers_ {};
+ 
+};
