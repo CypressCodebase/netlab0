@@ -128,5 +128,5 @@ auto NetworkInterface::arp_request(const uint16_t operation_code,
     arp_msg.sender_ip_address = ip_address_.ipv4_numeric();
     arp_msg.target_ip_address = target_ip;
       return arp_msg;
-}s
+}
 
